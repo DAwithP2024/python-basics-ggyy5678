@@ -33,8 +33,6 @@ products = {
 
 def display_sorted_products(products_list, sort_order):
     sorted_products = sorted(products_list, key=lambda x: x[1], reverse=(sort_order == 2))
-    for index, product in enumerate(sorted_products, start=1):
-        print(f"{index}. {product[0]} - ${product[1]}")
     return sorted_products
 
 
@@ -56,7 +54,6 @@ def display_cart(cart):
     if not cart:
         print("Your cart is empty.")
     else:
-        print("Your cart contains:")
         for index, item in enumerate(cart, start=1):
             print(f"{index}. {item[0][0]} - Quantity: {item[1]}")
 
@@ -118,6 +115,7 @@ def main():
             sort_order = int(input("Select sorting order:\n1. Ascending\n2. Descending\n"))
             sorted_products = display_sorted_products(products[selected_category], sort_order)
             products[selected_category] = sorted_products
+            display_products(sorted_products)
         elif option == 3:
             display_categories()
             category_choice = int(input("Select a category by entering the corresponding number: "))
